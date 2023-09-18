@@ -17,7 +17,7 @@ def is_iss_overhead():
     iss_latitude = float(position["latitude"])
     iss_longitude = float(position["longitude"])
 
-    if MY_LAT - 5 <= iss_latitude <= MY_LAT + 5 and MY_LONG - 5 <= iss_longitude <= MY_LONG + 5
+    if MY_LAT - 5 <= iss_latitude <= MY_LAT + 5 and MY_LONG - 5 <= iss_longitude <= MY_LONG + 5:
         return True
     
 def is_night():
