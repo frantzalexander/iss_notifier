@@ -1,5 +1,9 @@
 import requests
+
+from twilio.rest import Client
 from datetime import datetime
+from decouple import config
+
 
 MY_LAT = 45.516207
 MY_LONG = -73.686547
@@ -46,6 +50,14 @@ def is_night():
 is_iss_overhead()    
 is_night()
 
+text_message = "The ISS is overhead and would be visible shortly!"
     
 if is_iss_overhead and is_night:
-    print("You can see the ISS overhead!!")
+    client = Client(config("ACCOUNT_SID"), config("AUTH_TOKEN"))
+    
+    message = client.messages \
+        .create(
+            body = text_message,
+            from_ = config("PHONE_FROM"),
+            to = config("PHONE_TO")
+        )
